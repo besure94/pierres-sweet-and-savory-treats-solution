@@ -10,6 +10,32 @@
 
 <p>Here is an application that allows you to market your treats and flavors as your business expands.</p>
 
+<h4>Treats</h4>
+@if (Model["treats"].Length == 0)
+{
+  <p>No treats have been added yet.</p>
+}
+
+<ul>
+  @foreach (Treat treat in Model["treats"])
+  {
+    <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })</li>
+  }
+</ul>
+
+<h4>Flavors</h4>
+@if (Model["flavors"].Length == 0)
+{
+  <p>No flavors have been added yet.</p>
+}
+
+<ul>
+  @foreach (Flavor flavor in Model["flavors"])
+  {
+    <li>@Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = @flavor.FlavorId })</li>
+  }
+</ul>
+
 <hr>
 
 <p>@Html.ActionLink("Manage treats", "Index", "Treats")</p>
