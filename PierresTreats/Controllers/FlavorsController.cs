@@ -22,5 +22,26 @@ namespace PierresTreats.Controllers
       List<Flavor> model = _db.Flavors.ToList();
       return View(model);
     }
+
+    [Authorize]
+    public ActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Flavor flavor)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View(flavor);
+      }
+      else
+      {
+        _db.Flavors.Add(flavor);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+    }
   }
 }
