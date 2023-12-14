@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PierresTreats.Models.Flavor
+@using PierresTreats.Models
+@using System.Collections.Generic;
+
+<h2>Flavor Details</h2>
+<hr>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+<p>@Html.ActionLink("Back to flavor list", "Index")</p>
