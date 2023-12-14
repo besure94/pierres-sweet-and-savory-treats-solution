@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PierresTreats.Models;
+
+<h1>Pierre's Sweet and Savory Treats</h1>
+<hr>
+<h2>Welcome, Pierre!</h2>
+
+<p>Here is an application that allows you to market your treats and flavors as your business expands.</p>
+
+<hr>
+
+<p>@Html.ActionLink("Manage treats", "Index", "Treats")</p>
+<p>@Html.ActionLink("Manage flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
