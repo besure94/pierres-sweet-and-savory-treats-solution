@@ -6,7 +6,6 @@
 
 <h4>Create a new treat</h4>
 
-<p>@Html.ValidationMessageFor(model => model.FlavorId, "", new { @class="text-danger", @style="font-weight: 600;" })</p>
 <p>@Html.ValidationMessageFor(model => model.Name, "", new { @class="text-danger", @style="font-weight: 600;" })</p>
 <p>@Html.ValidationMessageFor(model => model.Description, "", new { @class="text-danger", @style="font-weight: 600;" })</p>
 
@@ -17,9 +16,6 @@
   <br>
   @Html.LabelFor(model => model.Description)
   @Html.TextBoxFor(model => model.Description)
-  <br>
-  @Html.LabelFor(model => model.Flavor)
-  @Html.DropDownList("FlavorId")
   <br>
   <input type="submit" class="btn btn-primary" value="Create"/>
 }

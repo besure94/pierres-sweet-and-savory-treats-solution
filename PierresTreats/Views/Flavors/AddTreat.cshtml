@@ -6,6 +6,9 @@
 
 <h2>Add a treat</h2>
 
+<p><strong>Note: you must have at least one treat in order to add it to a flavor.</strong></p>
+<p><strong>Go to @Html.ActionLink("this page", "Create", "Treats") to create a treat.</strong></p>
+
 <h4>Add a treat to this flavor: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())

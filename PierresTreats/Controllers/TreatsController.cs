@@ -25,7 +25,6 @@ namespace PierresTreats.Controllers
     [Authorize]
     public ActionResult Create()
     {
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View();
     }
 
@@ -34,14 +33,11 @@ namespace PierresTreats.Controllers
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
         return View(treat);
       }
       else
       {
         _db.Treats.Add(treat);
-        _db.SaveChanges();
-        _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = treat.FlavorId, TreatId = treat.TreatId });
         _db.SaveChanges();
         return RedirectToAction("Index");
       }
@@ -74,6 +70,10 @@ namespace PierresTreats.Controllers
       {
         _db.TreatFlavors.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = treat.TreatId });
         _db.SaveChanges();
+      }
+      else if (joinEntity == null && flavorId == 0)
+      {
+        return RedirectToAction("AddFlavor");
       }
       return RedirectToAction("Details", new { id = treat.TreatId });
     }
