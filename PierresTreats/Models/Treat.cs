@@ -7,7 +7,7 @@ namespace PierresTreats.Models
   {
     public int TreatId { get; set; }
 
-    [Range(1, int.MaxValue, ErrorMessage = "You must add a treat to a flavor. Have you created a flavor yet?")]
+    [Range(1, int.MaxValue, ErrorMessage = "You must add a treat to a flavor. Please create a flavor and try again.")]
     public int FlavorId { get; set; }
 
     [Required(ErrorMessage = "Treat must have a name.")]
