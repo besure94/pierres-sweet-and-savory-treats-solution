@@ -46,8 +46,33 @@ namespace PierresTreats.Controllers
 
     public ActionResult Details(int id)
     {
-      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      Flavor thisFlavor = _db.Flavors
+      .Include(flavor => flavor.JoinEntities)
+      .ThenInclude(flavor => flavor.Treat)
+      .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
+    }
+
+    [Authorize]
+    public ActionResult AddTreat(int id)
+    {
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
+      return View(thisFlavor);
+    }
+
+    [HttpPost]
+    public ActionResult AddTreat(Flavor flavor, int treatId)
+    {
+      #nullable enable
+      TreatFlavor? joinEntity = _db.TreatFlavors.FirstOrDefault(join => join.TreatFlavorId == treatId && join.FlavorId == flavor.FlavorId);
+      #nullable disable
+      if (joinEntity == null && treatId != 0)
+      {
+        _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treatId, FlavorId = flavor.FlavorId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
   }
 }
