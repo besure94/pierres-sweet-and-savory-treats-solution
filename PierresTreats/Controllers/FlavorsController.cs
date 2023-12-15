@@ -72,6 +72,10 @@ namespace PierresTreats.Controllers
         _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treatId, FlavorId = flavor.FlavorId });
         _db.SaveChanges();
       }
+      else if (joinEntity == null && treatId == 0)
+      {
+        return RedirectToAction("AddTreat");
+      }
       return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
