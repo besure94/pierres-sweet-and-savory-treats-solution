@@ -11,4 +11,20 @@
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 <h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
 
+@if (@Model.JoinEntities.Count == 0)
+{
+  <h4>This treat does not have any other flavors.</h4>
+}
+else
+{
+  <h4>This treat has these flavors:</h4>
+  <ul>
+    @foreach (TreatFlavor join in Model.JoinEntities)
+    {
+      <li>@join.Flavor.Name</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a flavor to this treat", "AddFlavor", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Back to treat list", "Index")</p>
