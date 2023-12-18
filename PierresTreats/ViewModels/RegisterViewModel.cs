@@ -6,7 +6,6 @@ namespace PierresTreats.ViewModels
   {
     [Required]
     [EmailAddress]
-    [DataType(DataType.EmailAddress)]
     [Display(Name = "Email Address")]
     public string Email { get; set; }
 
